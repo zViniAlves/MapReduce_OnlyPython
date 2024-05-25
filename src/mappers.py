@@ -1,4 +1,5 @@
 import json
+import numpy as np
 
 def run(csv:list,index_col_key:int,index_col_value:int,i_mapper):
     dict_map = {}
@@ -21,6 +22,9 @@ def run(csv:list,index_col_key:int,index_col_value:int,i_mapper):
             dict_map[key].append(value)
         else:
             dict_map[key] = [value]
+
+    for key in dict_map:
+        dict_map[key] = sum(dict_map[key])
 
     with open(f'temp/data_{i_mapper}.json','w') as out_file:
         json.dump(dict_map,out_file)
