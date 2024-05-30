@@ -9,7 +9,7 @@ sys.path.append(dir)
 
 from src.utils import reader,mappers
 
-def reduce_data(path:str,col_key:str,col_value:str,sep:str,chunk_size:int):
+def reduce_data(path:str,col_key:str,col_value:str,sep:str,chunk_size:int,verbose:bool):
 
     if chunk_size < 100000:
         raise UserWarning('the default value to chunck size is higher than 100,000, lowers value can create higher use of CPU')
@@ -30,12 +30,14 @@ def reduce_data(path:str,col_key:str,col_value:str,sep:str,chunk_size:int):
             list_mappers.append(Process(target=mappers.run,args=(csv[chunk_size*i_mapper:chunk_size*(i_mapper+1)],index_col_key,index_col_value,i_mapper)))
 
     for i,mapper in enumerate(list_mappers):
-        print(f'Mapper {i}º started')
+        if verbose:
+            print(f'Mapper {i}º started')
         mapper.start()
 
     for i,mapper in enumerate(list_mappers):
         mapper.join()
-        print(f'Mapper {i}º ended')
+        if verbose:
+            print(f'Mapper {i}º ended')
 
     list_json_files = os.listdir('temp')
     aggreagate_date = {}
