@@ -1,8 +1,9 @@
 import json
-import numpy as np
 
 def run(csv:list,index_col_key:int,index_col_value:int,i_mapper):
     dict_map = {}
+
+    #Mapper
     for row in csv[1:-1]:
         row = row.split(";")
 
@@ -23,6 +24,7 @@ def run(csv:list,index_col_key:int,index_col_value:int,i_mapper):
         else:
             dict_map[key] = [value]
 
+    #Reducer
     for key in dict_map:
         dict_map[key] = sum(dict_map[key])
 

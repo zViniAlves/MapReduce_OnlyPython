@@ -1,6 +1,4 @@
-def csv(path:str,col_key:str,col_value:str,**kwargs):
-    sep = ',' if not 'sep' in kwargs else kwargs['sep']
-
+def csv(path:str,col_key:str,col_value:str,sep:str):
     csv = open(path,'r').read().split('\n')
     header = csv[0]
 
