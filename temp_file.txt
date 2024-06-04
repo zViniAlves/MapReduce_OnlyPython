@@ -1,8 +1,0 @@
-Sistema de Map Reduce consistem em 3 passos
-
-1 Map -> O 'job' principal analisa o tamanho do conjunto de dados e cálcula o número de 'mappers'(processos) que iram executalo, 
-após isso cada processo recebe uma parte do conjunto de dados com uma key, e então cria um array que ira somar esses valores, depois salvando temporariamente
-2 Shueffle, Combine e Partition -> O 'job' principal verifica a execução de dados os 'mappers' e após isso então ler todos as chaves e valores
-3 Reduce -> Soma a chaves e seus arrays 
-
-https://www.databricks.com/br/glossary/mapreduce
